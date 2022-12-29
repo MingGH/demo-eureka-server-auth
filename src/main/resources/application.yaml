@@ -1,0 +1,25 @@
+server:
+  port: 5005
+
+spring:
+  application:
+    name: demo-eureka-server-auth
+  security:
+
+    user:
+      name: develop
+      password: develop
+eureka:
+  instance:
+    hostname: localhost
+    appname: ${spring.application.name}
+  server:
+    enable-self-preservation: true
+    eviction-interval-timer-in-ms: 4000
+  client:
+    registerWithEureka: true
+    fetchRegistry: false
+    service-url:
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${server.port}/eureka
+  environment: dev
+
